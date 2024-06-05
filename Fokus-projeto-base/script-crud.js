@@ -3,9 +3,16 @@
 const btnAdicionarTarefa = document.querySelector(".app__button--add-task");
 const formAdicionarTarefa = document.querySelector(".app__form-add-task");
 const textarea = document.querySelector(".app__form-textarea");
+const btnCancelar = document.querySelector(".app__form-footer__button--cancel");
+
 const ulTarefas = document.querySelector(".app__section-task-list");
 
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+
+// inserindo o array tarefas no localStorage
+function atualizarTarefas() {
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement("li");
@@ -25,6 +32,19 @@ function criarElementoTarefa(tarefa) {
 
     const botao = document.createElement("button");
     botao.classList.add("app_button-edit");
+
+    //editando nova da tarefa
+    botao.onclick = () => {
+        const novaDescricao = prompt("Qual o novo nome da tarefa?");
+        console.log(novaDescricao);
+        if (novaDescricao) {
+            paragrafo.textContent = novaDescricao;
+            tarefa.descricao = novaDescricao;
+            atualizarTarefas();
+        } else {
+            alert("O NOME DA TAREFA NÃO PODE SER VAZIA");
+        }
+    };
 
     const imagemBotao = document.createElement("img");
     imagemBotao.classList.add();
@@ -49,7 +69,7 @@ formAdicionarTarefa.addEventListener("submit", (evento) => {
     tarefas.push(tarefa);
     const elementoTarefa = criarElementoTarefa(tarefa);
     ulTarefas.append(elementoTarefa);
-    localStorage.setItem("tarefas", JSON.stringify(tarefas)); // inserindo o array tarefas no localStorage
+    atualizarTarefas();
     textarea.value = '';
     formAdicionarTarefa.classList.add("hidden");
 });
@@ -57,4 +77,9 @@ formAdicionarTarefa.addEventListener("submit", (evento) => {
 tarefas.forEach(tarefa => {
     const elementoTarefa = criarElementoTarefa(tarefa);
     ulTarefas.append(elementoTarefa);
+});
+
+btnCancelar.addEventListener("click", () => {
+    textarea.value = "";
+    formAdicionarTarefa.classList.add("hidden");
 });
