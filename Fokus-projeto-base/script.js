@@ -5,9 +5,14 @@ const focoBt = document.querySelector(".app__card-button--foco");
 const curtoBt = document.querySelector(".app__card-button--curto");
 const longoBt = document.querySelector(".app__card-button--longo");
 const botoes = document.querySelectorAll(".app__card-button");
+
 const musicaFocoInput = document.querySelector("#alternar-musica");
 const musica = new Audio("/Fokus-projeto-base/sons/luna-rise-part-one.mp3");
 musica.loop = true;
+const audioPlay = new Audio("/Fokus-projeto-base/sons/play.wav");
+const audioPausa = new Audio("/Fokus-projeto-base/sons/pause.mp3");
+const audioTempoFinalizado = new Audio("/Fokus-projeto-base/sons/beep.mp3");
+
 const titulo = document.querySelector(".app__title");
 const banner = document.querySelector(".app__image");
 const startPauseBt = document.querySelector("#start-pause");
@@ -67,8 +72,9 @@ function alterarContexto (contexto) {
 
 const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0) {
-        zerar();
+        audioTempoFinalizado.play();
         alert('tempo finalizado');
+        zerar();
         return;
     }
     tempoDecorridoEmSegundos -= 1
@@ -79,9 +85,11 @@ startPauseBt.addEventListener('click', iniciarOuPausar);
 
 function iniciarOuPausar() {
     if(intervaloId) {
+        audioPausa.play();
         zerar();
         return;
     }
+    audioPlay.play();
     intervaloId = setInterval(contagemRegressiva, 1000)
 }
 
