@@ -5,7 +5,10 @@ const focoBt = document.querySelector(".app__card-button--foco");
 const curtoBt = document.querySelector(".app__card-button--curto");
 const longoBt = document.querySelector(".app__card-button--longo");
 const botoes = document.querySelectorAll(".app__card-button");
+const iniciarOuPausarBt = document.querySelector("#start-pause span");
+const tempoNaTela = document.querySelector("#timer");
 
+const startPauseBt = document.querySelector("#start-pause");
 const musicaFocoInput = document.querySelector("#alternar-musica");
 const musica = new Audio("/Fokus-projeto-base/sons/luna-rise-part-one.mp3");
 musica.loop = true;
@@ -13,9 +16,10 @@ const audioPlay = new Audio("/Fokus-projeto-base/sons/play.wav");
 const audioPausa = new Audio("/Fokus-projeto-base/sons/pause.mp3");
 const audioTempoFinalizado = new Audio("/Fokus-projeto-base/sons/beep.mp3");
 
+const iconPlayOuPause = document.querySelector(".app__card-primary-button-icon");
+
 const titulo = document.querySelector(".app__title");
 const banner = document.querySelector(".app__image");
-const startPauseBt = document.querySelector("#start-pause");
 
 let tempoDecorridoEmSegundos = 5;
 let intervaloId = null;
@@ -72,13 +76,13 @@ function alterarContexto (contexto) {
 
 const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0) {
-        audioTempoFinalizado.play();
+        //audioTempoFinalizado.play();
         alert('tempo finalizado');
         zerar();
         return;
     }
     tempoDecorridoEmSegundos -= 1
-    console.log('Temporizador: ' + tempoDecorridoEmSegundos);
+    mostrarTempo();
 };
 
 startPauseBt.addEventListener('click', iniciarOuPausar);
@@ -90,10 +94,19 @@ function iniciarOuPausar() {
         return;
     }
     audioPlay.play();
-    intervaloId = setInterval(contagemRegressiva, 1000)
+    intervaloId = setInterval(contagemRegressiva, 1000);
+    iniciarOuPausarBt.textContent = "Pausar";
+    iconPlayOuPause.setAttribute("src", "/Fokus-projeto-base/imagens/pause.png");
 }
 
 function zerar() {
     clearInterval(intervaloId);
+    iniciarOuPausarBt.textContent = "Começar";
+    iconPlayOuPause.setAttribute("src", "/Fokus-projeto-base/imagens/play_arrow.png");
     intervaloId = null;
 }
+
+function mostrarTempo() {
+    const tempo = tempoDecorridoEmSegundos;
+    tempoNaTela.innerHTML = `${tempo}`;
+};
