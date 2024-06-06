@@ -1,7 +1,4 @@
-//html
 const html = document.querySelector("html");
-
-//buttons
 const focoBt = document.querySelector(".app__card-button--foco");
 const curtoBt = document.querySelector(".app__card-button--curto");
 const longoBt = document.querySelector(".app__card-button--longo");
@@ -24,7 +21,7 @@ const iconPlayOuPause = document.querySelector(
 const titulo = document.querySelector(".app__title");
 const banner = document.querySelector(".app__image");
 
-let tempoDecorridoEmSegundos = 1500;
+let tempoDecorridoEmSegundos = 30;
 let intervaloId = null;
 
 //event click
@@ -37,19 +34,19 @@ musicaFocoInput.addEventListener("change", () => {
 });
 
 focoBt.addEventListener("click", () => {
-    tempoDecorridoEmSegundos = 1500;
+    tempoDecorridoEmSegundos = 30;
     alterarContexto("foco");
     focoBt.classList.add("active");
 });
 
 curtoBt.addEventListener("click", () => {
-    tempoDecorridoEmSegundos = 300;
+    tempoDecorridoEmSegundos = 5;
     alterarContexto("descanso-curto");
     curtoBt.classList.add("active");
 });
 
 longoBt.addEventListener("click", () => {
-    tempoDecorridoEmSegundos = 900;
+    tempoDecorridoEmSegundos = 15;
     alterarContexto("descanso-longo");
     longoBt.classList.add("active");
 });
@@ -84,7 +81,12 @@ function alterarContexto(contexto) {
 const contagemRegressiva = () => {
     if (tempoDecorridoEmSegundos <= 0) {
         audioTempoFinalizado.play();
-        alert("tempo finalizado");
+        alert("tempo finalizado!");
+        const focoAtivo = html.getAttribute("data-contexto") == "foco";
+        if(focoAtivo) {
+            const evento = new CustomEvent("FocoFinalizado");
+            document.dispatchEvent(evento);
+        }
         zerar();
         return;
     }
