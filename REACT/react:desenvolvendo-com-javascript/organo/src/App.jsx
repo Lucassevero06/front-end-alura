@@ -1,12 +1,14 @@
-import './App.css'
+import Banner from './componentes/Banner/Banner.jsx';
+import CampoTexto from './componentes/CampoTexto';
 
 function App() {
 
   return (
-    <>
-        <h1>Hello World</h1>
-        <p>Bem-vindo ao react</p>
-    </>
+    <div className="App">
+
+      <Banner />
+      <CampoTexto />
+    </div>
   )
 }
 
