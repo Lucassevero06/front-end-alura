@@ -1,10 +1,10 @@
 import './CampoTexto.css';
 
-const CampoTexto = ({label, placeholder}) => {
+const CampoTexto = (props) => {
     return (
         <div className='campo-texto'>
-            <label >{label}</label>
-            <input placeholder={placeholder} />
+            <label >{props.label}</label>
+            <input placeholder={props.placeholder} />
         </div>
     )
 }
