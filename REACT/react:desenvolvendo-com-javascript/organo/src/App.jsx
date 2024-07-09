@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="App">
       <Banner />
-      <Formulario />
+      <Formulario
+        aoColaboradorCadastrado={colaborador => console.log(colaborador)}
+      />
     </div>
   )
 }
