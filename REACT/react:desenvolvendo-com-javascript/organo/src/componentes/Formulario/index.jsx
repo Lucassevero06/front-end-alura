@@ -15,6 +15,7 @@ const Formulario = (props) => {
     'Mobile',
     'Inovação e Gestão'
   ]
+  
   // hooks
   const [nome, setNome] = useState('')
   const [cargo, setCargo] = useState('')
