@@ -23,7 +23,7 @@ function App() {
     },
     {
       nome: 'Devops',
-      corPrimaria: '#E06B6B',
+      corPrimaria: '#E06B69',
       corSecundaria: '#FDE7E8'
     },
     {
@@ -38,7 +38,7 @@ function App() {
     },
     {
       nome: 'Inovação e Gestão',
-      corPrimaria: '#FFBA29',
+      corPrimaria: '#FF8A29',
       corSecundaria: '#FFEEDF'
     }
 
@@ -56,11 +56,13 @@ function App() {
       {/* Banner topo site */}
       <Banner />
       {/* Formulario criador de novos colaboradores */}
-      <Formulario
+      <Formulario times={times.map(time => time.nome)}
         aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}
       />
       {/* Exibe os times com os colaboradores existentes */}
-      {times.map(time => <Time key={time.nome} nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} />)}
+      {times.map(time => 
+        <Time key={time.nome} nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} />
+      )}
     </div>
   )
 }

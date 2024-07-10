@@ -6,10 +6,9 @@ const Time = (props) => {
             style={{
                 backgroundColor: props.corSecundaria
             }}
-            className='time'>
-                <h3 
-                    style={{borderColor: props.corPrimaria}}
-                >
+            className='time'
+            >
+                <h3 style={{borderColor: props.corPrimaria}}>
                     {props.nome}
                 </h3>
         </section>
