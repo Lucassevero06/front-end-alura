@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import './Colaborador.css';
 
 const Colaborador = ({ nome, imagem, cargo }) => {
