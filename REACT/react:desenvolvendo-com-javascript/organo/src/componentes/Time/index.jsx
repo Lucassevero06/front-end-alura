@@ -23,6 +23,17 @@ const Time = (props) => {
                 <div className='colaboradores'>
                     {props.colaboradores.map(colaborador => 
                         {
+                            console.log(
+                                <Colaborador
+                                corDeFundo={props.corPrimaria}
+                                key={colaborador.nome} 
+                                nome={colaborador.nome} 
+                                cargo={colaborador.cargo}
+                                imagem={colaborador.imagem}
+                                aoDeletar={props.aoDeletar}
+                            />
+                            )
+
                             return <Colaborador
                                 corDeFundo={props.corPrimaria}
                                 key={colaborador.nome} 
