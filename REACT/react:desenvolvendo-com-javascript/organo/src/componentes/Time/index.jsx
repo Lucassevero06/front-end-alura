@@ -5,7 +5,6 @@ import Colaborador from '../Colaborador';
 
 const Time = (props) => {
 
-    function
 
     return (
         // verificando se o array colaboradores tem pelo menos um colaborador
