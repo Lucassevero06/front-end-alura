@@ -5,6 +5,9 @@ import Colaborador from '../Colaborador';
 
 const Time = (props) => {
 
+    function deletarColaborador() {
+        console.log("Deletando colaborador")
+    }
 
     return (
         // verificando se o array colaboradores tem pelo menos um colaborador
